@@ -1,9 +1,8 @@
 # Imports
-from copyreg import constructor
 from crypt import crypt
 from .serializers import *
 from .models import *
- 
+from rest_framework import viewsets,status
 from django_filters import rest_framework as filters
 from rest_framework.permissions import IsAdminUser,IsAuthenticated,AllowAny
 from rest_framework.response import Response
@@ -352,8 +351,8 @@ def get_users_defix(request):
     perfil=Perfil.objects.get(usuario=request.user)
     if verificar_permiso(perfil,'UsuariosDefix','leer'):
         if perfil:
-            url = 'https://defix3.com:3070/api/v1/get-users-defix'
-            response = requests.get(url, headers={'Authorization':'Token caballoviejo'})
+            url = 'https://defix3.com:3071/api/v1/get-users-defix'
+            response = requests.get(url, headers={'Authorization':'Token contr@sen@dj@ngo'})
             data = response.json()
             return Response(data,status=status.HTTP_200_OK)
     else:
@@ -420,7 +419,7 @@ def get_transaction_history(request):
         if perfil:
             data=request.data
             #engine = pg.connect("dbname='defix3' user='gf' host='157.230.2.213' port='5432' password='uPKsp22tBeBC506WRBv21d7kniWiELwg'")
-            engine = create_engine('postgresql+psycopg2://gf:uPKsp22tBeBC506WRBv21d7kniWiELwg@157.230.2.213/defix3')
+            engine = create_engine('postgresql+psycopg2://defix3:sg2sRpizi1zvb67CUPgmwd17Q4F5xhAg@127.0.0.1/defix3')
             query = "select * from transactions where \
                                                 ((from_defix = '" + data['defixId'] + "' or to_defix = '" + data['defixId'] + "') or ('%%' = '" + data['defixId'] + "' or '%%' = '" + data['defixId'] + "'))\
                                                 and (coin = '" + data['coin'] + "' or '%%' = '" + data['coin'] + "')\
@@ -440,7 +439,7 @@ def get_balance_defix(request):
     if verificar_permiso(perfil,'Balance','leer'):
         if perfil:
             #engine = pg.connect("dbname='defix3' user='gf' host='157.230.2.213' port='5432' password='uPKsp22tBeBC506WRBv21d7kniWiELwg'")
-            engine = create_engine('postgresql+psycopg2://gf:uPKsp22tBeBC506WRBv21d7kniWiELwg@157.230.2.213/defix3')
+            engine = create_engine('postgresql+psycopg2://defix3:sg2sRpizi1zvb67CUPgmwd17Q4F5xhAg@127.0.0.1/defix3')
             query = "select * from balance"
             df = pd.read_sql_query(query, con=engine)
             jsondf = json.loads(df.to_json(orient='records'))

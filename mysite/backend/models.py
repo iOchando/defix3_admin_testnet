@@ -17,7 +17,7 @@ class Perfil(models.Model):
         return '%s - %s'%(self.usuario.username, self.tipo)
 
 class Modulo(models.Model):
-    nombre=models.CharField(max_length=32, null=False, blank=False)
+    nombre=models.CharField(max_length=255, null=False, blank=False, primary_key=True)
     #mayor=models.ForeignKey('self',default=None,null=True, on_delete=models.SET_DEFAULT)
     def __str__(self):
         return '%s'%(self.nombre)
@@ -32,7 +32,18 @@ class Permiso(models.Model):
     actualizar=models.BooleanField(default=False,help_text="Tiene opcion de actualizar?")
  
     # def save(self):
-    #     if not Permiso.objects.filter(perfil=self.perfil_id,menuinstancia=self.menuinstancia_id):
+    #     if not Permiso.objects.filter(perfil=self.perfil_id,da=self.menuinstancia_id):
     #         super().save()
     def __str__(self):
         return '%s (Permiso: %s - Leer:%s Borrar:%s Actualizar:%s Escribir:%s)'%(self.perfil.usuario.username,self.modulo.nombre,self.leer,self.borrar,self.actualizar,self.escribir)
+
+class Comision(models.Model):
+    coin=models.CharField(max_length=32, null=False, blank=False, primary_key=True)
+    nombre=models.CharField(max_length=255, null=False, blank=False)
+    blockchain=models.CharField(max_length=255, null=False, blank=False)
+    transfer=models.FloatField(null=False, blank=False)
+    swap=models.FloatField(null=False, blank=False)
+    fiat=models.FloatField(null=False, blank=False)
+    #mayor=models.ForeignKey('self',default=None,null=True, on_delete=models.SET_DEFAULT)
+    def __str__(self):
+        return '%s'%(self.coin)

@@ -6,4 +6,5 @@ from .models import *
 admin.site.register(Perfil)
 admin.site.register(Modulo)
 admin.site.register(Permiso)
+admin.site.register(Comision)
 #admin.site.unregister(Permiso)

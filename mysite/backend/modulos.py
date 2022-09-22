@@ -1,6 +1,7 @@
 modelos=[
-    {'nombre':'Usuarios'},
+    {'nombre':'UsuariosDefix'},
     {'nombre':'Transacciones'},
-    {'nombre':'Historico'},
-    {'nombre':'Defix'}
+    {'nombre':'Balance'},
+    {'nombre':'UsersAdmin'},
+    {'nombre':'Comisiones'}
 ]

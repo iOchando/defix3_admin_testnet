@@ -17,6 +17,11 @@ class ModuloSerializer(serializers.ModelSerializer):
         model = Modulo
         fields = '__all__'  
 
+class ComisionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comision
+        fields = '__all__'  
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
